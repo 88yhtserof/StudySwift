@@ -27,3 +27,15 @@ let decimalInteger:Int = 28 //10진수
 let binaryInteger: Int = 0b11100 //2진수로 28 표현, 0b사용
 let octalInteger: Int = 0o34 //8진수로 28 표현, 0o 사용
 let hexadecimalInteger: Int = 0x1C // 16진수로 28 표현, 0x 사용
+
+/*
+ 3-3 Bool
+ */
+var boolean: Bool = true
+print("boolean 값: \(boolean)")
+boolean.toggle() //true - fasle 반전
+print("toggle()한 boolean 값: \(boolean)")
+
+let iLoveYou:Bool = true //let은 상수 생성 시 사용
+let isTimeUnlimited: Bool = false
+print("시간은 무한합니까?: \(isTimeUnlimited)")

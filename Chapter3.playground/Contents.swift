@@ -66,3 +66,78 @@ let alphabet: Character = "A"
 print(alphabet)
 //영어 및 유니코드에서 지원하는 모든 언어 및 특수기호 등을 사용할 수 있다.
 
+/*
+ 3-6 String
+ */
+let name:String = "88yhtserof"
+
+//이니셜라이저를 사용하여 빈 문자열 생성 가능
+var introduce: String = String()
+
+//append() 문자열 이어붙이기
+introduce.append("제 이름은")
+
+//+ 연산자를 통해서도 문자열을 이어붙일 수 있다.
+introduce = introduce + " " + name + " 입니다."
+print(introduce)
+
+//String.count() 메소드는 문자의 수를 반환한다.
+print("name의 글자 수: \(name.count)")
+
+//String.isEmpty 메소드로 빈 문자열인지 아닌지 확인할 수 있다.
+print("intoduce 가 비어있습니까?: \(introduce.isEmpty)")
+
+//유니코드의 스칼라값을 사용하면 값에 해당하는 표현이 출력된다.
+let unicodeScalarValue: String = "\u{2665}"
+print(unicodeScalarValue)
+
+/*
+ 3-7 String 타입의 다양한 기능
+ */
+let language:String = "88yhtserof"
+var result:String = "Hello, "
+print(result)
+
+//1. + 연산자를 통한 문자열 결합
+result+=language
+result+="!"
+print(result)
+
+//2. 연산자를 통한 문자열 비교
+var isSameString:Bool = false
+isSameString = language == "88yhtserof"
+print(isSameString)
+
+//3. 접두어, 접미어 확인
+var hasPrefix:Bool  = false
+hasPrefix = language.hasPrefix("88")
+print(hasPrefix)  //true
+
+var hasSuffix:Bool = false
+hasSuffix = language.hasSuffix("88")
+print(hasSuffix) //false
+
+//4.대소문자 변환
+let testUpperLower:String = "abcdEFG"
+var convertedString: String = ""
+convertedString = testUpperLower.uppercased()
+print(convertedString) //ABCDEFG
+
+convertedString = testUpperLower.lowercased()
+print(convertedString)  //abcdefg
+
+// 5. 프로퍼티를 통한 빈 문자열 확인
+print(language.isEmpty) //false
+
+//6. 프로퍼티를 이용한 문자열 길이 확인
+print(language.count) //10
+
+//7. 코드 상에서 여러 줄의 문자열을 직접 쓰고 싶다면 큰따옴표 세 개를 사용한다.
+print("""
+    1. +연산자와 append() 메소드로 문자열을 이을 수 있다.
+    2. 비교 연산자를 통해 문자열을 비교할 수 있다.
+    3. hasPrefix()로 접두어를, hasSuffix로 접미어를 확인할 수 있다.
+    4. uppercased()와 lowercased로 대소문자 변환할 수 있다.
+    5. String.isEmpty 로 빈 문자열을 확인할 수 있다.
+    6. String.count로 문자열 길이를 확인할 수 있다.
+    """)

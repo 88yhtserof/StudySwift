@@ -39,3 +39,30 @@ print("toggle()한 boolean 값: \(boolean)")
 let iLoveYou:Bool = true //let은 상수 생성 시 사용
 let isTimeUnlimited: Bool = false
 print("시간은 무한합니까?: \(isTimeUnlimited)")
+
+/*
+3-4 Float과 Double
+ */
+//Float: 32bits의 부동소수 표현 / Double: 64bits의 부동소수 표현
+//Float이 수용할 수 있는 범위를 넘어설 때, 자신의 감당할 수 있는 만큼만 남긴다.->정확도가 떨어짐
+var floatValue: Float = 1234567890.1
+
+let doubleValue: Double = 1234567890.1
+
+print("floatValue: \(floatValue) doubleValue : \(doubleValue)")
+/*
+ e5=10의 5 제곱=100000
+ e-5=10의 5분의 1 제곱=0.00010
+*/
+ 
+//Float이 수용할수 있는 범위의 수로 변경합니다.
+floatValue = 123456.1
+print(floatValue)
+
+/*
+ 3-5 Character
+ */
+let alphabet: Character = "A"
+print(alphabet)
+//영어 및 유니코드에서 지원하는 모든 언어 및 특수기호 등을 사용할 수 있다.
+

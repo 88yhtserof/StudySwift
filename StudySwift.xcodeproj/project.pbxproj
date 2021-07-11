@@ -9,6 +9,7 @@
 /* Begin PBXFileReference section */
 		9A03A8F72691D99500C8FFCA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9A1776A42695DD41005FDCF7 /* Chapter3.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter3.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		9AB60BDB269ADB680061A31E /* Chapter4.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter4.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9AFDD5F326934E0E009F2D26 /* Chapter2.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter2.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
@@ -16,6 +17,7 @@
 		9A03A8EF2691D8F200C8FFCA = {
 			isa = PBXGroup;
 			children = (
+				9AB60BDB269ADB680061A31E /* Chapter4.playground */,
 				9A1776A42695DD41005FDCF7 /* Chapter3.playground */,
 				9AFDD5F326934E0E009F2D26 /* Chapter2.playground */,
 				9A03A8F72691D99500C8FFCA /* MyPlayground.playground */,

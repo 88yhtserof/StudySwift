@@ -9,3 +9,19 @@ import UIKit
  */
 //타입을 지정하지 않았으나 타입추론을 통해 name은 String 타입으로 선언된다
 var name = "88yhtserof"
+
+/*
+ 4-2 타입 별칭
+ 기본 데이터 타입이든 사용자 데이터 타입이든 이미 존재하는 데이터 타입에 임의로 다른 이름(별칭)을 부여할 수 있다
+그 후 기본 타입과 추가 별칭을 모두 사용할 수 있다.
+ */
+typealias MyInt = Int
+typealias YourInt = Int
+typealias MyDouble = Double
+
+let age: MyInt = 100
+var  year: YourInt = 2080
+
+//MyInt도 YourInt도  Int 타입 이기 때문에 같은 타입으로 취급
+year = age
+

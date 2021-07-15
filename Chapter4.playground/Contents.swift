@@ -69,3 +69,58 @@ let swift: PersonTuple = ("Swift", 20, 200.5)
 
 print("jason: \(jason)")
 print("swift: \(swift.self)")
+
+
+//4.4 컬렉션형
+//4.4.1 배열
+/*
+ 4-6 배열의 선언과 생성
+ 배열 Array: 같은 타입의 데이터를 일렬로 나열한 후 순서대로 저장하는 형태의 컬렉션 타입
+ C언어와 다르게 var 키워드 사용 시 자유롭게 추가 삭제가 가능하다. let은 변경할 수 없다.
+ */
+//대괄호를 사용하여 배열임을 표현한다.
+var names1: Array<String> = ["88yhtserof", "swift", "ariana", "renee"]
+
+//다른 배열 표현 방법. [String]은 Array<String>의 축약 표현이다.
+var names2: [String] = ["88yhtserof", "swift", "ariana", "renee"]
+
+//빈 배열 생성
+var emptyArray1: [Any] = [Any]()
+var emptyArray2: [Any] = Array<Any>() //다른 빈 배열 생성 방법
+var emptyArray3: [Any] = [] //배열의 타입을 정확히 명시해줬다면 []만으로도 빈 배열 생성 가능
+
+print(emptyArray1.isEmpty) //isEmpty 프로퍼티로 빈 배열 여부 확인 가능
+print(names1.count)  //count 프로퍼티로 배열 요소 개수 확인 가능
+
+/*
+ 4-7 배열의 사용
+ 배열은 각 요소에 인덱스를 통해 접근할 수 있으며, 인덱스는 0부터 시작한다.
+ */
+names2[0] = "catherine" //names2 배열을 var 키워드로 생성했기 때문에 요소 변경 가능
+print(names2[0]) //인덱스로 요소 접근 가능
+
+names2.append("rachel") //append메소드로 요소를 추가할 수 있다.
+names2.append(contentsOf: ["sandra", "joan"]) //한 개 이상의 요소를 추가할 수 있다.
+var numbers = [1, 2, 3, 4, 5]
+numbers.append(contentsOf: 10...15) //10부터 15까지의 숫자가 추가된다.
+print(numbers)
+
+print(names2)
+names2.insert("keller", at: 2) // 인덱스 2 자리에 삽입된다. 기존 요소는 그다음 인덱스로 밀려난다.
+print(names2)
+names2.insert(contentsOf: ["kim", "tae"], at: 5) //인덱스 5번 위치에 요소가 삽입된다
+print(names2)
+numbers.insert(contentsOf: 100...103, at: 3)
+print(numbers)
+
+print(names2.firstIndex(of: "kim")) //해당 요소의 인덱스를 알 수 있다.
+print(names2.last)  //last 프로퍼티를 이용해 맨 마지막 요소를 알 수 있다.
+print(names2.first) //first 프로퍼티를 이용해 맨 처음 요소를 알 수 있다.
+
+let firstItem:String = names2.removeFirst() //첫번째 요소를 삭제 후 반환
+let lastItem:String = names2.removeLast() //마지막 요소를 삭제 후 반환
+let indexZeroItem:String = names2.remove(at: 0)// 해당 인덱스 요소 삭제 후 반화
+print(firstItem, lastItem, indexZeroItem)
+
+names2[0 ... 2] = ["1", "2", "3"] //범위의 요소만 바꾸는 것 가능
+print(names2[0 ... 5]) // 출력도 가능

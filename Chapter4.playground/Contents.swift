@@ -25,3 +25,47 @@ var  year: YourInt = 2080
 //MyInt도 YourInt도  Int 타입 이기 때문에 같은 타입으로 취급
 year = age
 
+
+ //4.3 튜플
+/*
+ 4-3 튜플 기본
+ 튜플(Tuple) : 지정된 데이터 묶음
+ */
+//String, Int, Double 타입을 갖는 튜플
+var person1: (String, Int, Double) = ("88yhtserof", 100, 200.5)
+
+//인덱스를 통해서 값을 빼 올 수 있습니다.
+print("이름: \(person1.0), 나이: \(person1.1), 신장: \(person1.2) person: \(person1) self: \(person1.self) ")
+
+person1.1 = 99 //인덱스를 통해 값을 할당할 수 있다.
+person1 = ("change", 150, 300.5) //요소를 한 번에 모두 바꿀 수 있다.
+
+print(person1)
+
+/*
+ 4-4 튜플 요소 이름 지정
+ 튜플 요소마다 이름을 붙여줄 수 있다.
+ */
+//String, Int, Double 타입을 갖는 튜플
+var person2: (name: String, age:Int, height: Double) = ("88yhtserof", 100, 200.5)
+
+//요소 이름을 통해서 값을 빼 올 수 있다.
+print("이름: \(person2.name), 나이: \(person2.age), 신장: \(person2.height)")
+
+person2.age = 199 //요소 이름을 통해 값을 할당할 수 있다.
+person2.0 = "change" //인덱스를 통해서도 값을 할당할 수 있다.
+
+print(person2)
+
+/*
+ 4-5 튜플 별칭 지정
+ 타입 별칭을 사용하여 조금 더 깔끔하고 안정하게 코드를 작성할 수 있다.
+ 타입별칭(typealias) : 데이터 타입에 임의로 다른 이름을 부여할 수 있다.
+ */
+typealias PersonTuple = (name: String, age: Int, height: Double)
+
+let jason: PersonTuple = ("Jason", 19, 100.6)
+let swift: PersonTuple = ("Swift", 20, 200.5)
+
+print("jason: \(jason)")
+print("swift: \(swift.self)")

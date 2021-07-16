@@ -124,3 +124,51 @@ print(firstItem, lastItem, indexZeroItem)
 
 names2[0 ... 2] = ["1", "2", "3"] //범위의 요소만 바꾸는 것 가능
 print(names2[0 ... 5]) // 출력도 가능
+
+//4.4.2 딕셔너리
+/*
+ 4-8 딕셔너리의 선언과 생성
+ 딕셔너리 Dictionary: 요소들이 순서 없이 키와 값의 쌍으로 구성되는 컬렉션 타입
+ */
+//키는 String, 값은 Int인 빈 딕셔너리를 생성한다.
+var numberForName1: Dictionary<String, Int> = Dictionary<String, Int>()
+
+//간단 딕셔너리 생성법
+var numberForName2: [String:Int] = [String:Int]()
+
+//typealias를 통해 조금 더 단순하게 표현가능
+typealias StringIntDictionary = [String:Int]
+var numberForName3: StringIntDictionary = StringIntDictionary()
+
+//딕셔너리의 키와 값 타입을 정확히 명시해줬다면 [:]만으로도 빈 딕셔너리 생성 가능
+var numberForName4: [String:Int] = [:]
+
+//선언과 초기화를 동시에 할 수 있다.
+var numberForName5: [String:Int] = ["88yhtserof": 100, "renee":200, "catherine": 800]
+
+print(numberForName5)
+print(numberForName5.isEmpty)  //false, isEmpty 프로퍼티로 빈 여부 확인 가능
+print(numberForName5.count)  //count 프로퍼티로 개수 확인 가능
+
+/*
+ 4-9 딕셔너리의 사용
+ 딕셔너리는 배열과는 다르게 딕셔너리 내부에 없는 키로 접근해도 오류가 발생하지 않는다. 찾고자 하는 키가 없다면 nil은 반환한다.
+ */
+print(numberForName5["88yhtserof"])
+print("ari") //찾고자 하는 키가 없다면 nil반환
+
+numberForName5["88yhtserof"] = 600 //"88yhtserof" 키의 값은 변경한다.
+numberForName5["ariana"] = 900 // "ariana":900인 키와 값 쌍을 딕셔너리에 추가한다
+print(numberForName5) //딕셔너리는 요소들이 순서 상관없이 저장된다
+
+//let returnValue: Int = numberForName5.removeValue(forKey: "88yhtserof") //키에 해당하는 딕셔너리 요소를 삭제 후 반환
+print(numberForName5.removeValue(forKey: "88yhtserof") )
+if let returnValue = numberForName5.removeValue(forKey: "ariana"){
+    print("remove")
+}
+else{
+    print("No found")
+}
+
+//키에 해당하는 요소가 없을 때 nil이 아닌 기본값을 반환하게 할 수 있다.
+print(numberForName5["88yhtserof", default: 0])

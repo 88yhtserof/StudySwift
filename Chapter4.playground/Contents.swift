@@ -172,3 +172,71 @@ else{
 
 //키에 해당하는 요소가 없을 때 nil이 아닌 기본값을 반환하게 할 수 있다.
 print(numberForName5["88yhtserof", default: 0])
+
+//4.4.3 세트
+/*
+ 4-10 세트의 선언과 생성
+ 세트set:같은 타입의 데이터를 순서 없이 하나의 묶음으로 저장하는 형태의 컬렉션 타입. 세트 내의 값은 유일 값
+ */
+//빈 세트 생성법
+var testSet1: Set<String> = Set<String>()
+var testSet2: Set<String> = []
+
+//Array와 마찬가지로 대괄호를 사용
+var testSet3: Set<String> = ["88yhtserof", "ari", "renee"]
+//그렇기 때문에 타입 추론을 사용하게 되면 컴파일러는 Set이 아닌 Array 타입으로 지정한다.
+var testType = [1,2,3]
+print(type(of: testType)) //type(of: ) 타입 확인 메서드
+
+print(testSet1.isEmpty) //isEmpty프로퍼티를 사용해서 빈 여부를 알 수 있다.
+print(testSet3.count)   //count프로퍼티를 사용해 요소의 개수를 알 수 있다.
+
+/*
+ 4-11 세트의 사용
+ */
+print(testSet3.count)
+testSet3.insert("sandra") //세트에 요소를 추가한다
+print(testSet3)
+
+print(testSet3.remove("renee")) //0번 인덱스에 있는 요소 삭제 후 반환
+print(testSet3.remove("kim")) //없는 요소를 삭제하려 하면 nil 반환
+
+/*
+ 4-12 세트의 활용 - 집합연산
+ 세트는 자신 내부의 값들이 모두 유일함을 보장하므로 집합관계를 표현하고자 할 때 유용하다.
+ */
+let englishClassStudents: Set<String> = ["john", "chulsoo", "minho"]
+let koreanClassStudents: Set<String> = ["jenny", "minho", "chulsoo", "minsoo"]
+
+//교집합
+let intersectSet: Set<String>
+    = englishClassStudents.intersection(koreanClassStudents)
+print(intersectSet)
+
+//여집합의 합(배타적 논리합) - 교집합의 여집합
+let symmetricDiffSet: Set<String>
+    = englishClassStudents.symmetricDifference(koreanClassStudents)
+print(symmetricDiffSet)
+
+//합집합
+let unionSet: Set<String> = englishClassStudents.union(koreanClassStudents)
+print(unionSet)
+
+//차집합
+let subtractSet: Set<String> = englishClassStudents.subtracting(koreanClassStudents)
+print(subtractSet)  //john
+
+print(unionSet.sorted()) //sorted 메서드를 통하여 정렬된 배열을 반환
+
+/*
+ 4-13 세트의 활용 - 포함관계 연산
+ 세트는 포함 관계를 연산할 수 있는 메서드로 구현되어있다.
+ */
+let bird: Set<String> = ["비둘기", "닭", "기러기"]
+let mammal: Set<String> = ["사자", "호랑이", "곰"]
+let animal: Set<String> = bird.union(mammal) //합집합
+
+print(bird.isDisjoint(with: mammal))  //서로 배타적인가요? true
+print(bird.isSubset(of: animal)) // 새가 동물의 부분집합인가요? true
+print(animal.isSuperset(of: mammal)) //동물은 포유류의 전체집합인가요? true
+print(animal.isSuperset(of: bird)) //동물은 새의 전체집합인가요? true

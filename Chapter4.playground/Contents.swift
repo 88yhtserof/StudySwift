@@ -92,6 +92,9 @@ var emptyArray3: [Any] = [] //배열의 타입을 정확히 명시해줬다면 [
 print(emptyArray1.isEmpty) //isEmpty 프로퍼티로 빈 배열 여부 확인 가능
 print(names1.count)  //count 프로퍼티로 배열 요소 개수 확인 가능
 
+var test1 = ["a", "b"]
+var test2 = Array<String>()
+
 /*
  4-7 배열의 사용
  배열은 각 요소에 인덱스를 통해 접근할 수 있으며, 인덱스는 0부터 시작한다.
@@ -113,13 +116,18 @@ print(names2)
 numbers.insert(contentsOf: 100...103, at: 3)
 print(numbers)
 
-print(names2.firstIndex(of: "kim")) //해당 요소의 인덱스를 알 수 있다.
+names2.append("kim")
+//["catherine", "swift", "keller", "ariana", "renee", "kim", "tae", "rachel", "sandra", "joan", "kim"]
+print(names2.firstIndex(of: "kim")) //해당 인수와 일치하는 요소 중 첫번쨰 요소의 인덱스 반환
+print(names2.lastIndex(of: "kim")) //해당 인수와 일치하는 요소 중 마지막 요소의 인덱스 반환
 print(names2.last)  //last 프로퍼티를 이용해 맨 마지막 요소를 알 수 있다.
 print(names2.first) //first 프로퍼티를 이용해 맨 처음 요소를 알 수 있다.
 
-let firstItem:String = names2.removeFirst() //첫번째 요소를 삭제 후 반환
+let firstItem:String = names2.removeFirst() //첫 번째 요소를 삭제 후 반환
 let lastItem:String = names2.removeLast() //마지막 요소를 삭제 후 반환
 let indexZeroItem:String = names2.remove(at: 0)// 해당 인덱스 요소 삭제 후 반화
+//removeFirst(k:)와 removeLast(k:)도 쓸 수 있다.
+
 print(firstItem, lastItem, indexZeroItem)
 
 names2[0 ... 2] = ["1", "2", "3"] //범위의 요소만 바꾸는 것 가능
@@ -150,6 +158,8 @@ print(numberForName5)
 print(numberForName5.isEmpty)  //false, isEmpty 프로퍼티로 빈 여부 확인 가능
 print(numberForName5.count)  //count 프로퍼티로 개수 확인 가능
 
+var dictionary5 = ["test1": 1, "test2":2]
+
 /*
  4-9 딕셔너리의 사용
  딕셔너리는 배열과는 다르게 딕셔너리 내부에 없는 키로 접근해도 오류가 발생하지 않는다. 찾고자 하는 키가 없다면 nil은 반환한다.
@@ -161,7 +171,7 @@ numberForName5["88yhtserof"] = 600 //"88yhtserof" 키의 값은 변경한다.
 numberForName5["ariana"] = 900 // "ariana":900인 키와 값 쌍을 딕셔너리에 추가한다
 print(numberForName5) //딕셔너리는 요소들이 순서 상관없이 저장된다
 
-//let returnValue: Int = numberForName5.removeValue(forKey: "88yhtserof") //키에 해당하는 딕셔너리 요소를 삭제 후 반환
+var returnValue: Int? = numberForName5.removeValue(forKey: "kim") //키에 해당하는 딕셔너리 요소를 삭제 후 반환
 print(numberForName5.removeValue(forKey: "88yhtserof") )
 if let returnValue = numberForName5.removeValue(forKey: "ariana"){
     print("remove")
@@ -172,6 +182,8 @@ else{
 
 //키에 해당하는 요소가 없을 때 nil이 아닌 기본값을 반환하게 할 수 있다.
 print(numberForName5["88yhtserof", default: 0])
+
+numberForName5.updateValue(888, forKey: "renee")
 
 //4.4.3 세트
 /*
@@ -200,6 +212,7 @@ print(testSet3)
 
 print(testSet3.remove("renee")) //0번 인덱스에 있는 요소 삭제 후 반환
 print(testSet3.remove("kim")) //없는 요소를 삭제하려 하면 nil 반환
+let removeTest: String? = testSet3.remove("sandra")
 
 /*
  4-12 세트의 활용 - 집합연산
@@ -240,3 +253,5 @@ print(bird.isDisjoint(with: mammal))  //서로 배타적인가요? true
 print(bird.isSubset(of: animal)) // 새가 동물의 부분집합인가요? true
 print(animal.isSuperset(of: mammal)) //동물은 포유류의 전체집합인가요? true
 print(animal.isSuperset(of: bird)) //동물은 새의 전체집합인가요? true
+print(animal.isStrictSubset(of: bird)) //false
+print(animal == bird)  //false

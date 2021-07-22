@@ -446,3 +446,49 @@ enum School6: String, CaseIterable {
 
 let allCases2: [School6] = School6.allCases // 컬렉션 생성
 print(allCases2)
+
+//4.5.5 순환 열거형
+/*
+ 4-26 특정항목에 순환 열거형
+ 순환열거형은 연관 값이 열거형 자신의 값이고자 할 때 사용
+ indirect 키워드 사용
+ */
+//산술 연산을 위해 정의한 열거형
+enum ArithmeticExpression1 {
+    case number(Int)
+    indirect case addition(ArithmeticExpression1, ArithmeticExpression1)
+    indirect case multiplication(ArithmeticExpression1, ArithmeticExpression1)
+}
+
+/*
+ 4-27 열거형 전체에 순환 열거형 명시
+ */
+indirect enum ArithmeticExpression2 {
+    case number(Int) //정수를 연관값으로 갖는 항목
+    case addition(ArithmeticExpression2, ArithmeticExpression2) //덧셈을 위한 항목
+    case multiplication(ArithmeticExpression2, ArithmeticExpression2) // 곱셈을 위한 항목
+}
+
+/*
+ 4-28 순환 열거형의 사용
+ ArithmeticExpression2 열거형을 사용하여 (5 + 4) * 2 구현하는 예제
+ */
+let five = ArithmeticExpression2.number(5)
+let four = ArithmeticExpression2.number(4)
+let sum = ArithmeticExpression2.addition(five, four) //5+4
+let final = ArithmeticExpression2.multiplication(sum, ArithmeticExpression2.number(2)) //(5+4)*2
+
+//ArithmeticExpression2 열거형의 계산을 도와주는 순환 함수(Recursive Function) (재귀적 함수)
+func evaluate(_ expression: ArithmeticExpression2) -> Int {
+    switch expression {
+    case .number(let value):
+        return value
+    case .addition(let left, let right):
+        return evaluate(left) + evaluate(right)
+    case .multiplication(let left, let right):
+        return evaluate(left) * evaluate(right)
+    }
+}
+
+let result: Int = evaluate(final)
+print("(5+4)*2 = \(result)")

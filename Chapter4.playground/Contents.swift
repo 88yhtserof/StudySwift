@@ -415,3 +415,34 @@ enum MainDish2 {
 
 var lunch: MainDish2 = MainDish2.pasta(taste: PastaTaste.tomato)
 lunch = MainDish2.pizza(dough: PizzaDough.cheeseCrust, topping: PizzaTopping.bacon)
+
+//4.5.4 항목 순회
+/*
+ 4-22 CaseInterable 프로토콜을 활용한 열거형의 항목 순회
+ 열거형 선언 시 CaseIterable 프로토콜을 채택한 후 열거형에 allCases 프로퍼티를 통해 모든 케이스의 컬렉션을 생성해준다.
+ */
+enum School5: CaseIterable { //프로토콜 채택
+    case primary
+    case elementary
+    case middle
+    case high
+    case college
+    case university
+    case graduate
+}
+
+let allCases1: [School5] = School5.allCases //모든 케이스의 컬렉션 생성
+print(allCases1)
+
+/*
+ 4-23 원시 값을 갖는 열거형 의 항목 순회
+ */
+enum School6: String, CaseIterable {
+    case primary = "유치원"
+    case elementary = "초등학교"
+    case middle = "중학교"
+    case high = "고등"
+}
+
+let allCases2: [School6] = School6.allCases // 컬렉션 생성
+print(allCases2)

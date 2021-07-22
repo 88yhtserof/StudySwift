@@ -255,3 +255,40 @@ print(animal.isSuperset(of: mammal)) //동물은 포유류의 전체집합인가
 print(animal.isSuperset(of: bird)) //동물은 새의 전체집합인가요? true
 print(animal.isStrictSubset(of: bird)) //false
 print(animal == bird)  //false
+
+//4.5 열거형
+/*
+ 4-14 School 열거형의 선언
+ 열거형은 연관된 항목들을 묶어서 표현할 수 있는 타입.
+ 프로그래머가 정의해준 항목 값 외에는 추가/수정이 불가하다.
+ enum 키워드 사용.(enumerate: 열거하다)
+ 각 항목이 그 자체로 고유의 값이될 수 있다.
+ */
+enum School1{
+    case primary  //유치원
+    case elementary //초등
+    case middle //중등
+    case high  //고등
+    case college  //대학
+    case university //대학교
+    case graduate //대학원
+}
+
+/*
+ 4-15 School열거형의 선언
+ 한 줄에 모두 표현해 줄 수도 있다.
+ */
+enum School2{
+    case primary, elementary, middle, high, college, university, graduate
+}
+
+/*
+ 4-16 School 열거형 변수의 생성 및 값 변경
+ */
+var highestEducationLevel1: School1 = School1.university
+
+//위 코드와 같은 표현
+var highestEducationLevel2: School1 = .university
+
+//같은 타입인 School 내부의 항목으로만 highestEducationLevel1의 값을 변경해 줄 수 있다
+highestEducationLevel1 = .graduate

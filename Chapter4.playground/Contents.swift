@@ -375,3 +375,43 @@ let graduate = School4(rawValue: "대학원") //nil
 
 let one = Number2(rawValue: 1) //1
 let three = Number2(rawValue: 3) //nil
+
+//4.5.3  연관값
+/*
+ 4-20 연관 값을 갖는 열거형
+ */
+enum MainDish1 {
+    case pasta(taste: String)
+    case pizza(dough: String, topping: String)
+    case chicken(withSause: Bool)
+    case rice //일부 항목만 연관값을 가져도 된다.
+}
+
+var dinner: MainDish1 = MainDish1.pasta(taste: "크림") //크림 파스타
+dinner = .pizza(dough: "치즈크러스트", topping: "불고기") //불고기 치즈크러스트 피자
+dinner = .chicken(withSause: true) //양념통닭
+dinner = .rice //밥
+
+/*
+ 4-21 여러 열거형의 응용
+ 항목의 연관값을 특정 항목으로 한정지으려면 연관값도 열거형으로 바꾸자
+ */
+enum PastaTaste {
+    case cream, tomato
+}
+enum PizzaDough {
+    case cheeseCrust, thin, original
+}
+enum PizzaTopping {
+    case pepperoni, cheese, bacon
+}
+
+enum MainDish2 {
+    case pasta(taste: PastaTaste)
+    case pizza(dough: PizzaDough, topping: PizzaTopping)
+    case chicken(wihtSaurce: Bool)
+    case rice
+}
+
+var lunch: MainDish2 = MainDish2.pasta(taste: PastaTaste.tomato)
+lunch = MainDish2.pizza(dough: PizzaDough.cheeseCrust, topping: PizzaTopping.bacon)

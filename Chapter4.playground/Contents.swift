@@ -257,6 +257,7 @@ print(animal.isStrictSubset(of: bird)) //false
 print(animal == bird)  //false
 
 //4.5 열거형
+//4.5.1 기본 열거형
 /*
  4-14 School 열거형의 선언
  열거형은 연관된 항목들을 묶어서 표현할 수 있는 타입.
@@ -292,3 +293,85 @@ var highestEducationLevel2: School1 = .university
 
 //같은 타입인 School 내부의 항목으로만 highestEducationLevel1의 값을 변경해 줄 수 있다
 highestEducationLevel1 = .graduate
+
+//4.5.2 원시 값
+/*
+ 4-17 열거형의 원시 값 지정과 사용
+열거형의 각 항목은 자체로도 하나의 값이지만 항목의 원시값Raw Value 도 가질 수 있다.
+ 즉 특정 타입으로 지정된 값을 가질 수 있다.
+원시값은 rawValue 프로퍼티를 통해 가져올 수 있다.
+ */
+enum School3: String {
+    case primary = "유치원"
+    case elementary = "초등학교"
+    case middle = "중학교"
+    case high = "고등학교"
+    case college = "대학"
+    case university = "대학교"
+    case graduate = "대학원"
+}
+
+let highestEducationLevel3: School3 = School3.university
+print("저의 최종학력을 \(highestEducationLevel3.rawValue) 졸업입니다.")
+//저의 최종 학력은 대학교 졸업입니다.
+
+enum WeekDays: Character {
+    case mon = "월", tue = "화", wed = "수", thu = "목", fri = "금"
+}
+
+let today: WeekDays = WeekDays.fri
+print("오늘은 \(today.rawValue)요일 입니다.")
+//오늘은 금요일입니다.
+
+/*
+ 4-18 열거형의 원시 값 일부 지정 및 자동 처리
+ 일부 항목만 원시 값을 줄 수 있다.
+ 문자열 형식의 원시 값을 지정해줬다면 각 항목 이름을 그대호 원시값ㅇ로 갖게 되고
+ 정수 타입이라면 첫 항목을 기준으로 0부터 1씩 늘어난 값을 갖게 된다.
+ */
+enum School4: String {
+    case primary = "유치원"
+    case elementary = "초등학교"
+    case middle = "중학교"
+    case high = "고등학교"
+    case college
+    case university
+    case graduate
+}
+
+let highestEducationLevel4: School4  = School4.university
+print("저의 최종학력은 \(highestEducationLevel4.rawValue) 졸업입니다.")
+//원시 값을 지정해 주지 않은 항목은 rawValue 프로퍼티에 항목 이름 그대로 들어감
+
+//변수 또는 상수에 할당해 주지 않아도 항목에 접근할 수 있다.
+print(School4.elementary.rawValue)
+
+enum Number1: Int{
+    case ten = 10
+    case Zero //11
+    case one //12
+    case two//13
+    //원시값을 가지지 않는 항목은 첫 항목인 10을 시작으로 1씩 늘어난 값을 원시값을 갖게 된다.
+    //원시값이 없는 것끼이 나열되어야 한다. 뒤섞여 있으면 오류
+}
+
+print(Number1.Zero.rawValue, Number1.one.rawValue, Number1.two.rawValue, Number1.ten.rawValue)
+
+enum Number2: Int{
+    case Zero //0
+    case one //1
+    case two //2
+    case ten = 10
+}
+print(Number2.Zero.rawValue, Number2.one.rawValue, Number2.two.rawValue, Number2.ten.rawValue)
+
+/*
+ 4-19 원시 값을 통한 열거형 초기화
+ 열거형의 원시 값 정보를 안다면 원시 값을 통해 열거형 변수 또는 상수를 생성해줄 수도 있다.
+ 올바르지 않은 원시 값을 통해 생성하려 한다면 nil 반환한다.
+ */
+let primary = School4(rawValue: "유치원") //primary
+let graduate = School4(rawValue: "대학원") //nil
+
+let one = Number2(rawValue: 1) //1
+let three = Number2(rawValue: 3) //nil

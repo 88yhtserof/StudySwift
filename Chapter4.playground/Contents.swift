@@ -492,3 +492,45 @@ func evaluate(_ expression: ArithmeticExpression2) -> Int {
 
 let result: Int = evaluate(final)
 print("(5+4)*2 = \(result)")
+
+//4.5.6 비교 가능한 열거형
+/*
+ 4-29 비교 가능한 열거형의 사용
+ Comporable 프로토콜을 준수하는 연관값만 갖거나
+ 연관 값이 없는 열거형은 Comparable 프로토콜을 채택하면 각 케이스를 비교 할 수 있다.
+ 케이스가 열거형 선언의 앞에 위치할 수록 작은 값을 가진다.
+ */
+enum Condition: Comparable {//Comparable 프로토콜 채택하면 각 케이스를 비교할 수 있다.
+    case terrible
+    case bad
+    case good
+    case great
+    //크기 비교 terrible<bad<good<great
+}
+
+let myCondition: Condition = Condition.great
+let yourCondition: Condition = Condition.bad
+
+if myCondition >= yourCondition {
+    print("제 상태가 더 좋군요.")
+}else{
+    print("당신의 상태가 더 좋군요.")
+}
+//제 상태가 더 좋군요
+
+enum Device: Comparable {
+    case iPhone(version: String)
+    case iPad(version: String)
+    case macbook, iMac
+}
+
+var devices: [Device] = []
+devices.append(Device.iMac)
+devices.append(Device.iPhone(version: "24.3"))
+devices.append(Device.iPhone(version: "14.3"))
+devices.append(Device.iPhone(version: "6.1"))
+devices.append(Device.iPad(version: "10.3"))
+devices.append(Device.macbook)
+
+let sortedDevices: [Device] = devices.sorted()
+print(sortedDevices)

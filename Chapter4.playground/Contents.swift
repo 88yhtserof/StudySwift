@@ -391,6 +391,7 @@ var dinner: MainDish1 = MainDish1.pasta(taste: "크림") //크림 파스타
 dinner = .pizza(dough: "치즈크러스트", topping: "불고기") //불고기 치즈크러스트 피자
 dinner = .chicken(withSause: true) //양념통닭
 dinner = .rice //밥
+print(dinner)
 
 /*
  4-21 여러 열거형의 응용
@@ -433,6 +434,7 @@ enum School5: CaseIterable { //프로토콜 채택
 
 let allCases1: [School5] = School5.allCases //모든 케이스의 컬렉션 생성
 print(allCases1)
+print(type(of: allCases1))
 
 /*
  4-23 원시 값을 갖는 열거형 의 항목 순회

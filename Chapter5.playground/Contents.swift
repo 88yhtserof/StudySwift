@@ -56,3 +56,20 @@ let referenceA: SomeClass  = referenceA
 let isSameReferenceAB: Bool = referenceA === referenceB //false
 let isSameReferenceAC: Bool = referenceA === referenceC //true
 */
+
+//5.1.4 삼항 조건 연산자
+/*
+ 5-1 삼항 조건 연산자의 사용
+ 피연산자가 3개인 삼항 조건 연산자.
+ 조건 ? A : B - 참이면 A를 반환, 거짓이면 B를 반환
+ 조건 안에 또 다른 삼항 연산자를 넣어 중첩할 수도 있다.
+ 
+ 띄어쓰기 주의*
+ */
+let valueD: Int = 3
+let valueE: Int = 5
+var compareValue: Int = valueD > valueE ? valueD : valueE // 5
+
+let strValue: String = "value"
+compareValue = strValue.isEmpty ? 0:1 //1
+strValue.isEmpty ? print("아무 내용도 없습니다.") : print(strValue)

@@ -73,3 +73,48 @@ var compareValue: Int = valueD > valueE ? valueD : valueE // 5
 let strValue: String = "value"
 compareValue = strValue.isEmpty ? 0:1 //1
 strValue.isEmpty ? print("아무 내용도 없습니다.") : print(strValue)
+
+//5.1.5 범위 연산자
+//범위 연산자는 1씩 증가하기 때문에 정수만 가능하다.
+//폐쇄 범위 연산자
+for i in 0...5 { //i가 0,1,2,3,4,5로 1씩 증가한다.
+    print("\(i). 폐쇄 범위 연산자")
+}
+
+//반폐쇄 범위 연산자
+for i in 0..<5 { //i가 0,1,2,3,4로 1씩 증가한다.
+    print("\(i). 반폐쇄 범위 연산자")
+}
+
+var array = ["A", "B", "c", "d"]
+
+//단방향 범위 연산자
+for value in array[2...] {//인덱스 2부터 배열 끝까지 배열 원소가 value에 저장됨
+    print("\(value). 단방향 범위 연산자1")
+}
+
+for value in array[..<2] { //인데스 0부터 1까지 배열 원소가 value에 저장됨
+    print("\(value). 단방향 범위 연산자2")
+}
+
+for value in array[...2] { // 인덱스 0부터 2까지 배열 원소가 value에 저장됨
+    print("\(value). 단방향 범위 연산자3")
+}
+
+//5.1.10 기타 연산자
+/*
+ nil 병합 연산자 A ?? B
+ : A가 nil이 아니면 A를 반환하고, A가 nil이면 B를 반환한다.
+ nil 병합 연산자는 옵셔널을 사용할 때 아주 유용한 연산자이다.
+ 삼항 조건 연산자을 사용하여 nil 여부를 확인할 수도 있지만 nil 병합 연산자를 사용하는 것이
+ 훨씬 안전하고 간단하게 옵셔널을 다루는 방법이다.
+ 
+ let value: Int = someOptionalInt != nil ? someOptionalInt : 0
+ 
+ let value: Int = someOptionalInt ?? 0
+*/
+
+/*
+ 부호 변경 연산자 -A
+ A(수)의 부호를 변경합니다.
+ */

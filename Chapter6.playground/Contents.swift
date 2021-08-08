@@ -223,3 +223,67 @@ case .pizza:
     print("무엇을 주문할까?")
 }
 
+
+//6.2 반복문
+//6.2.1 for-in 구문
+//6-15 for-in 반복 구문의 활용
+for i in 0...2 {
+    print(i)
+}
+
+for i in 0...5{
+    if i.isMultiple(of: 2){//i가 주어진 값의 배수이면 true, 아니면 false
+        print("\(i)는 짝수")
+        continue //continue 키워드를 사용하면 바로 다음 시퀀스로 건너뛴다.
+    }
+    print("\(i)는 홀수")
+}
+
+//나)문자열은 순서가 있기 때문에 시퀀스 아이템으로 사용할 수 있다.
+let helloSwift: String = "Hello Swift"
+
+for char in helloSwift {
+    print(char)
+}
+
+var result: Int = 1
+
+//시퀀스에 해당하는 값이 필요없다면 와일드카드 식별자(_)를 사용하면 된다.
+for _ in 1...3 {
+    result *= 10
+}
+
+print("결과는 \(result)")
+
+/*
+ 6-16 기본 데이터 타입의 for-in 반복 구문 사용
+ for-in 구문은 스위프트의 기본 컬렉션 타입에서도 유용하게 사용할 수 있다.
+ 딕셔너리는 넘겨받는 값의 타입이 튜플로 지정되어 넘어옵니다.
+ */
+//Dictionary
+//순서없는 키와 값 쌍 데이터 모음
+let friends: [String: Int] = ["A": 35, "B": 29, "C":31]
+
+for tuple in friends {
+    print(tuple)
+}
+
+//키 값을 따로 나눠 받을 수도 있다.
+let address: [String: String] = ["도": "충청북도", "시군구": "청주시 청원구", "동읍면":"율량동"]
+
+for (key, value) in address {
+    print("키는 \(key), 값은 \(value)")
+}
+
+//Set
+//순서없는 데이터의 집합
+let number:Set<Int> = [1, 2, 3, 4, 5]
+
+for n in number {
+    print("Set 원소 출력 - \(n)")
+}
+
+/*
+ for-in 구문을 사용해 반복처리를 쉽게 할 수 있지만 스위프트에 좀 더 익숙해져서 옵셔널, 클로저 등을 배우고,
+ 함수형 프로그래밍 패러다임을 이해하면 for-in 구문보다 map,filter, flatMap 등을 더 많이 사용하게 될 것이다.
+ */

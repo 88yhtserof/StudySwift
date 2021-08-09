@@ -319,3 +319,37 @@ repeat {
     //removeLast()는 요소를 삭제함과 동시에 삭제한 요소를 반환한다.
 }  while !alphabet.isEmpty
 
+/*
+ 6.3 구문 이름표
+ 반복문 앞에 이름과 함께 콜론을 붙여 구문의 이름을 지정해주는 구문 이름표
+ 이름이 지정된 구문을 제어하고자 할 때는 제어 키워드와 구문 이름을 함께 써주면 좋다.
+ */
+//6-19 중첩된 반복문의 구문 이름표 사용
+var numbers:[Int] = [0, 2, 3, 4, 100]
+
+numbersLoop: for num in numbers {
+    if num > 5 || num<1{
+        continue numbersLoop
+    }
+    
+    var count: Int = 0
+    printLoop: while true {
+        print(num)
+        count += 1
+        
+        if count == num {
+            break printLoop
+        }
+    }
+    
+    removeLoop: while true {
+        if numbers.first != num {
+            break numbersLoop
+        }
+        numbers.removeFirst()
+    }
+}
+print("numbers엔 \(numbers)이 남는다.")
+//2
+//2
+//numbers에 0, 2, 3, 4, 100 이 남는다.

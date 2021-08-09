@@ -225,7 +225,11 @@ case .pizza:
 
 
 //6.2 반복문
-//6.2.1 for-in 구문
+/*
+ 6.2.1 for-in 구문
+ 특정 구문을 특정 횟수만큼 반복해서 실행하고자 할 때 사용한다.
+ 정해진 반복 횟수, continue, break 등의 제어 키워드 사용 가능
+ */
 //6-15 for-in 반복 구문의 활용
 for i in 0...2 {
     print(i)
@@ -287,3 +291,31 @@ for n in number {
  for-in 구문을 사용해 반복처리를 쉽게 할 수 있지만 스위프트에 좀 더 익숙해져서 옵셔널, 클로저 등을 배우고,
  함수형 프로그래밍 패러다임을 이해하면 for-in 구문보다 map,filter, flatMap 등을 더 많이 사용하게 될 것이다.
  */
+
+/*
+ 6.2.2 while 구문
+ 주어진 조건식이 false가 될 때까지, 즉 반복횟수가 정해져 있지 않다.
+ 반복 횟수를 모를 때 사용
+ continue, break 등의 제어 키워드 사용이 가능하다.
+*/
+//6-17 while 반복 구문의 사용
+ var alphabet: [String] = ["A", "B", "C", "D"]
+
+while !alphabet.isEmpty {
+    print("이번에 삭제할 요소는? \(alphabet.removeFirst())")
+    //removeFirst()는 첫 번째 요소를 삭제함과 동시에 삭제한 요소를 반환한다.
+}
+
+/*
+ 6.2.3 repeat-while 구문
+ 다른 프로그래밍 언어의 do-while 구문과 크게 다르지 않다
+ repeat 블록의 코드를 최초 1회 실행한 후, while 다음의 조건이 성립하면 블로 내부의 코드를 반복 실행한다.
+ */
+//6-18 repeat-while 반복 구문의 사용
+alphabet = ["a", "b", "c", "d"]
+
+repeat {
+    print("이번에 삭제할 요소는? \(alphabet.removeLast())")
+    //removeLast()는 요소를 삭제함과 동시에 삭제한 요소를 반환한다.
+}  while !alphabet.isEmpty
+

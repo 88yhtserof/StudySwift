@@ -134,3 +134,59 @@ func sayHelloToFriends(me: String, friends names: String... ) -> String {
 
 print(sayHelloToFriends(me: "88yhtserof")) //가변 매개변수는 0개 이상의 값을 받아올 수 있다.
 print(sayHelloToFriends(me: "88yhtserof", friends: "Jay", "John", "Harry"))
+
+//7.2.3 반환이 없는 함수
+//7-10 반환 값이 없는 함수의 정의와 사용
+func sayHelloWorld() {
+    print("Hello World!")
+}
+
+sayHelloWorld()
+
+//Void를 명시해 주어도 된다.
+func sayGoodbye() -> Void {
+    print("Goodbye")
+}
+
+sayGoodbye()
+
+
+//7.2.4 데이터 타입으로서의 함수
+/*
+ 7-11 함수 타입의 사용
+ (매개변수의 타입 나열) -> 반환 타입
+ 스위프트의 함수는 일급 객체이므로 하나의 데이터 타입으로 사용할 수 있다.
+ 함수를 데이터 타입으로 사용할 수 있다는 것은 함수를 전달인자로 받을 수도, 반환 값으로 돌려줄 수도 있다는 의미
+ */
+typealias CalculateTwoInts = (Int, Int) -> Int //타입 별칭 사용
+
+func addTwoInts(_ a: Int, _ b: Int) -> Int {
+    return a+b
+}
+
+var mathFunction: CalculateTwoInts = addTwoInts
+//var mathFunction: (Int, Int) -> Int = addTwoInts 와 동일한 표현
+
+print(mathFunction(2, 5))
+
+//7-12 전달인자로 함수를 전달하는 함수
+func printMathResult(_ mathFunction: CalculateTwoInts, _ a: Int, _ b: Int) {
+    print("Result: \(mathFunction(a,b))")
+}
+
+printMathResult(addTwoInts, 2, 4)
+
+
+//7-13 특정 조건에 따라 적절한 함수를 반환해주는 함수
+func chooseMathFunction(_ toAdd: Bool)  -> CalculateTwoInts {
+    return toAdd ? addTwoInts : addTwoInts
+}
+
+printMathResult(chooseMathFunction(true), 3, 5)
+
+/*
+ 전달인자 레이블과 함수 타입
+ 전달인자 레이블은 함수 타입을 작성할 때 사용 불가
+ let someFunction: (_ a: Int, _ b: Int) ->I nt 가능
+ let someFunction: (a: Int, b: Int) -> Int 가능
+ */

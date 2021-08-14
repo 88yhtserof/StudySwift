@@ -190,3 +190,81 @@ printMathResult(chooseMathFunction(true), 3, 5)
  let someFunction: (_ a: Int, _ b: Int) ->I nt 가능
  let someFunction: (a: Int, b: Int) -> Int 가능
  */
+
+
+//7.3 중첩 함수
+/*
+ 스위프 데이터는 타입의 중첩은 자유롭다.
+ 클래스 안 클래스, 열거형 안 열거형
+ */
+//7-14 원점으로 이동하기 위한 함수
+//원점은 0
+typealias MoveFunc1 = (Int) -> Int
+
+func goRight(_ currentPosition: Int) -> Int {
+    return currentPosition + 1
+}
+
+func goLeft(_ currentPosition: Int) -> Int {
+    return currentPosition - 1
+}
+
+func functionForMove1(_ shouldGoLeft: Bool) -> MoveFunc1 {
+    return shouldGoLeft ? goLeft : goRight
+}
+
+var position: Int = 3 //현재 위치
+
+//현 위치가 0보다 크므로 전달되는 인자 값은 true가 됩니다
+//그러므로 goLeft 함수가 할당될 것이다
+let moveToZero1: MoveFunc1 = functionForMove1(position>0)
+/*
+ let moveZero: (Int) -> Int = functionForMove1(position>0) 와 같은 의미
+ 즉 moveZero는 Int를 매개변수로 받고 Int를 반환한다.
+ */
+
+print("원점으로 갑시다.")
+
+//원점에 도착하면(현 위치가 0이면) 반복문이 종료된다.
+while position != 0 {
+    print("지금 위치는 \(position)")
+    position = moveToZero1(position)
+    /*
+     position = moveToZero(position) 의 처리 과정
+     1. functionForMove(position>0) 실행
+     2. 만약 position > 0 이 true라면 goLeft 호출됨
+     3. currentPosition - 1 이 반환된다.
+     */
+}
+print("원점 도착!")
+
+/*
+ 지금 위치는 3
+ 지금 위치는 2
+ 지금 위치는 1
+ */
+
+//7-15 중첩 함수의 사용
+typealias MoveFunc2 = (Int) -> Int
+
+func functionForMove2(_ shouldGoLeft: Bool) -> MoveFunc2 {
+    func goRight(_ currentPosition: Int) -> Int {
+        return currentPosition + 1
+    }
+
+    func goLeft(_ currentPosition: Int) -> Int {
+        return currentPosition - 1
+    }
+    
+    return shouldGoLeft ? goLeft : goRight
+}
+
+var index: Int = -4 //현 위치
+
+let moveToZero2: MoveFunc2 = functionForMove2(index > 0)
+
+while index != 0 {
+    print("지금 위치는 \(index)")
+    index = moveToZero2(index)
+}
+print("원점 도착")

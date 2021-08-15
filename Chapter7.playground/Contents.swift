@@ -268,3 +268,48 @@ while index != 0 {
     index = moveToZero2(index)
 }
 print("원점 도착")
+
+
+//7.4 종료되지 않는 함수
+/*
+ 스위프트에는 종료(return)되지 않는 함수가 있다.
+ 종료되지 않는다는 의미는 정상적으로 끝나지 않는 함수라는 뜻이다.
+ 비반환 함수 또는 비반환 메서드라고 한다,
+ 비반환 함수 안에서는 오류를 던진다든가, 중대한 시스템 오류를 보고 하는 등의 일을 하고 프로세스를 종료해 버리기 때문이다.
+ */
+
+//7-16 비반환 함수의 정의와 사용
+func crashAndBurn() -> Never {
+    fatalError("Something vary, vary bad happened")
+}
+
+//crashAndBurn() //프로세스 종료 후 오류 보고
+
+func someFunction(isAllIsWell: Bool) {
+    guard isAllIsWell else {
+        print("마을에 도둑이 들었습니다!")
+        crashAndBurn()
+    }
+    print("All is well")
+}
+
+someFunction(isAllIsWell: true) //All is well
+//someFunction(isAllIsWell: false) //마을에 도둑이 들었습니다!
+
+//7.5 반환 값을 무시할 수 있는 함수
+//7-17 @discardableResult 선언 속성 사용
+func say(_ something: String) -> String {
+    print(something)
+    return something
+}
+
+@discardableResult func discardableResultSay(_ something: String) -> String {
+    print(something)
+    return something
+}
+
+//반환 값을 사용하지 않았으므로 컴파일러가 경고를 표시할 수 있다.
+say("hello")
+
+//반환값을 사용하지 않을 수 있다고 미리 알렸기 때문에 반환 값을 사용하디 않아도 컴파일러가 경고하지 않는다.
+discardableResultSay("bye")

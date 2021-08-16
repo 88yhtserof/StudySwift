@@ -353,3 +353,46 @@ print("numbers엔 \(numbers)이 남는다.")
 //2
 //2
 //numbers에 0, 2, 3, 4, 100 이 남는다.
+
+
+
+//블로그 자료
+
+
+//switch 구문
+
+//정수 switch 구문 기본 표현
+let numberTest: Int = 3
+
+switch numberTest {
+case 0:
+    print("0")
+case 1...10:
+    print("1~10")
+    fallthrough
+case 3, 6, 9:
+    print("3 또는 6 또는 9와 같다.")
+case 11...20:
+    fallthrough
+case 15:
+    print("15입니다.")
+default:
+    print("해당하는 case가 없습니다.")
+}
+
+//튜플 switch 구문
+typealias colorAndFruit = (color: String, fruit: String) //타입 별칭 사용
+
+let inputValue: colorAndFruit = ("red", "banana")
+
+switch inputValue {
+case ("red", "apple"):
+    print("정답입니다.")
+case ("red", _):
+    print("색만 맞췄습니다. 과일은 \(inputValue.fruit)입니다.")
+case (let color, "apple"):
+    print("과일만 맞췄습니다. 색은 \(color)입니다.")
+default:
+    print("오답입니다.")
+}
+

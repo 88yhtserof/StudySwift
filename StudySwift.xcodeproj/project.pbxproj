@@ -13,6 +13,7 @@
 		9A1776A42695DD41005FDCF7 /* Chapter3.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter3.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9A88A74F26C6AA420013B187 /* Chapter7.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter7.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9AB60BDB269ADB680061A31E /* Chapter4.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter4.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		9ACC48C426CD488F00041AAB /* Chapter8.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter8.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9AFDD5F326934E0E009F2D26 /* Chapter2.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter2.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
@@ -20,6 +21,7 @@
 		9A03A8EF2691D8F200C8FFCA = {
 			isa = PBXGroup;
 			children = (
+				9ACC48C426CD488F00041AAB /* Chapter8.playground */,
 				9A88A74F26C6AA420013B187 /* Chapter7.playground */,
 				9A173AEB26BD8271007A5157 /* Chapter6.playground */,
 				9A034EB226B1A4AF00C0F183 /* Chapter5.playground */,

@@ -76,3 +76,69 @@ class Fruit {
 
 var myFruit: Fruit? = Fruit()
 myFruit = nil //deinit 메서드 호출
+
+//9.3 구조체와 클래스의 차이
+/*
+ 구조체 -  값 타입. 전달 인자로 값 타입의 값을 넘긴다면 전달될 값이 복사되어 전달
+ 클래스 -  참조 타입. 참조 타입이 전달인자로 전달될 때는 값을 복사하지 않고 참조(주소) 전달
+ 차이점
+ 1. 클래스는 상속 관계 가능
+ 2. 타입캐스팅은 클래스의 인스턴스에만 허용
+ 3. 디이니셜라이저는 클래스의 인스턴스에만 활용 가능
+ 참조 횟수 계산은 클래스의 인스턴스에만 적용
+ */
+//9-6 값 타입과 참조 타입의 차이
+struct BasicInfoMation {
+    let name: String
+    var age: Int
+}
+var minaInfo: BasicInfomation = BasicInfomation(name: "Mina", age: 99)
+minaInfo.age = 100
+
+//minaInfo의 값을 복사하여 할당(값 타입이니깐)
+var friendInfo: BasicInfomation = minaInfo
+
+print("minaInfo : \(minaInfo.age)")
+print("friendInfo : \(friendInfo.age)")
+
+friendInfo.age = 200
+print("minaInfo : \(minaInfo.age)")
+print("friendInfo : \(friendInfo.age)")
+//friendInfo는 값을 복사해온 것이기 때문에 minaInfo와 별개
+
+class Friend {
+    var name: String = ""
+    var number: Int = 0
+}
+
+var sandra: Friend = Friend()
+var friendsandra: Friend = sandra  //jenny의 참조(주소)를 할당
+
+print("sandra's number : \(sandra.number)")
+print("friend's number : \(friendsandra.number)")
+
+sandra.name = "sandra"
+sandra.number = 433
+print("sandra's number : \(sandra.number)")
+print("friend's number : \(friendsandra.number)")
+//friendsandra는 jenny를 참조하기 때문에 jenny의 값만 변경하여도 friendsandra도 변경된다.
+
+/*
+ 9-7 식별 연산자 사용
+ 클래스의 인스터스끼리 참조가 같은지 확인할 때는 식별 연산자를 사용한다.
+ */
+var anotherFriend: Friend = Friend()
+
+print("sandra와 friendsandra의 참조가 같은가? \(sandra === friendsandra)")
+print("sandra와 anotherFriend의 참조가 같은가? \(sandra === anotherFriend)")
+
+/*
+ 9.3.2 스위프트의 기본 데이터 타입은 모두 구조체
+ 스위프트의 다른 기본 타입은 모두 구조체로 구현되어 있다. 즉, 값 타입이라는 뜻
+ */
+
+/*
+ 9.4 구조체와 클래스 선택해서 사용하기
+ 구조체와 클래스는 새로운 데이터 타입을 정의하고 기능을 추가한다는 점이 같지만 구조체는 값 타입, 클래스는 참조 타입으로 용도가 다르다.
+ 프로젝트 성격에 따라, 데이터의 활용도에 따라, 특정 타입을 구현할 때 구조체와 클래스 중 하나를 선택해야 한다,
+ */

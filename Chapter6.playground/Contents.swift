@@ -396,3 +396,112 @@ default:
     print("오답입니다.")
 }
 
+//블로그 정리 예제
+
+//기본 for-in 구문 사용 예제
+for _ in 1...3 {
+    print("출력하기")
+}
+//출력하기
+//출력하기
+//출력하기
+
+for i in 1..<5 {
+    if(i%2 == 0){
+        print("\(i)는 짝수입니다. ")
+        continue //더 이상 진행하지 않고 다음 시퀀스로 이동
+    }
+    print("\(i)는 홀수입니다.")
+}
+//1는 홀수입니다.
+//2는 짝수입니다.
+//3는 홀수입니다.
+//4는 짝수입니다.
+
+for i in 0..<2 {
+    if i == 0 {
+        print("0이면 break")
+        break //반복문을 종료한다.
+    }
+    print("i는 \(i)")
+}
+//0이면 break
+
+//문자열이 시퀀스 아이템인 경우 for-in 구문 예제
+let introduce: String = "Hi! I'm yh!"
+
+for char in introduce {
+    print(char,terminator: ".")
+}
+
+print("")
+
+//컬렉션 타입이 시퀀스 아이템인 경우﻿
+//배열
+let numberArray: [Int] = [1,2,3,4]
+
+for num in numberArray {
+    print(num)
+}
+//1
+//2
+//3
+//4
+
+//딕셔너리 - 키와 값 쌍의 순서 없는 컬렉션 타입
+let contactAddress: [String: Int] = ["renee": 1124, "ari": 478]
+
+for tuple in contactAddress {
+    print("\(tuple.key)의 연락처는 \(tuple.value)이다.")
+}
+ 
+//세트 - 순서 없이 하나의 묶음으로 저장하는 형태의 컬렉션 타입
+let myInfo: Set<String> = ["yh","123-456", "red", "apple"]
+
+for info in myInfo {
+    print(info, terminator: " ")
+}
+
+
+//while 구문
+var num: Int = 5
+
+while num != 0 {
+    if(num>0){
+        num-=1
+        print("현재 num은 \(num)")
+        continue
+    }
+    num+=1
+    print("현재 num은 \(num)")
+}
+
+
+//구문 이름표
+let employees: [String:Int] = ["김하나": 1, "강둘": 2, "송셋": 3, "진넷": 4]
+let retirees = "강둘"
+
+
+employeesLoop: for employeeInfo in employees {
+    var payGrade = 0
+    var salary = 0
+    
+    print("\(employeeInfo.key)", terminator: " ")
+    
+    salaryCalLoop: while employeeInfo.value >= payGrade {
+        salary+=100
+        payGrade+=1
+        
+        if employeeInfo.key == retirees {
+            print("퇴직자입니다.")
+            continue employeesLoop
+        }
+    }
+    print("의 월급은 \(salary)이다.")
+}
+/*
+ 송셋 의 월급은 400이다.
+ 강둘 퇴직자입니다.
+ 김하나 의 월급은 200이다.
+ 진넷 의 월급은 500이다.
+ */

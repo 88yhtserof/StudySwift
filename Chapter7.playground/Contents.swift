@@ -313,3 +313,56 @@ say("hello")
 
 //반환값을 사용하지 않을 수 있다고 미리 알렸기 때문에 반환 값을 사용하디 않아도 컴파일러가 경고하지 않는다.
 discardableResultSay("bye")
+
+
+
+//블로그 정리
+
+/*
+func 함수이름(전달인자레이블 매개변수: 매개변수타입) -> 반환타입 {
+    
+    실행구문
+    return 반환값
+}
+ */
+
+//return 키워드 생략
+func sayHello() -> String {
+    "Hello!"
+    //return "Hello!"와 같은 동작
+}
+print(sayHello())
+
+//매개변수와 전달인자, 전달인자 레이블
+func sendLetter(from myName: String,
+                to yourName: String,
+                _ content: String) -> String {
+    return "Dear \(yourName),\n \(content) \n \(myName)"
+}
+
+var letter:String = sendLetter(from: "yh", to: "renee", "Hello!")
+print(letter)
+
+//매개변수의 기본값
+//중요한 매개변수는 앞쪽에 배치하는 것이 좋다.
+//기본값이 없는 매개변수는 주로 중요한 값을 전달할 가능성이 높다. 따라서 기본 값이 없는 매개변수를 앞에 배치한다.
+func sendLetter(from myName: String,
+                _ content: String,
+                to yourName: String = "my friend") -> String {
+    return "Dear \(yourName),\n \(content) \n \(myName)"
+}
+
+letter = sendLetter(from: "88yh", "Hi!!")
+print(letter)
+
+letter = sendLetter(from: "john", "Nice to meet you!", to: "Mina")
+print(letter)
+
+//가변 매개변수
+func sayFavoriteList(favoriteList: String...) {
+    for favorite in favoriteList {
+        print("I Love \(favorite)")
+    }
+}
+
+sayFavoriteList(favoriteList: "LaLaLand", "blue", "purple")

@@ -366,3 +366,36 @@ func sayFavoriteList(favoriteList: String...) {
 }
 
 sayFavoriteList(favoriteList: "LaLaLand", "blue", "purple")
+
+
+//일급객체, 함수
+func isEvenNumber(_ number: Int) -> Bool {
+    if number % 2 == 0 {
+        return true
+    }
+    return false
+}
+
+print(isEvenNumber(2))
+
+let function1: (Int) -> Bool = isEvenNumber
+
+print(function1(5))
+
+//타입 별칭을 사용하여 나타낼 수도 있다.
+typealias CheckInt = (Int) -> Bool
+let function2: CheckInt = isEvenNumber
+
+print(function2(10))
+
+
+//전달인자가 함수인 경우
+func sayResult(_ number:Int, function: (Int) -> Bool) {
+    if function(number) {
+        print("\(number)는 짝수입니다.")
+    }else{
+        print("\(number)는 홀수입니다.")
+    }
+}
+
+sayResult(10, function: isEvenNumber)

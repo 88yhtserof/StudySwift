@@ -102,3 +102,39 @@ man2Position.position = CoordinatePoint3(x: 200, y: 4300)
 
 //이렇게 옵셔널과 이니셜라이저를 적절히 사용하면 다른 프로그래머가 사용할 때, 내가 처음 의도했던 대로 구조체와 클래스를 사용할 수 있도록 유도할 수 있다.
 
+
+/*
+ 10.1.2 지연 저장 프로퍼티
+ 호출이 있어야 값을 초기화 하는 지연 저장 프로퍼티(Lazy Stored Properties)
+ lazy 키워드
+ 상수는 인스턴스가 완전히 생성되기 전에 초기화해야 하므로 필요할 때 값을 할당하는 지연 저장 프로퍼티와는 맞지 않는다.
+ 따라서 지연 저장 프로퍼티는 var 키워드를 사용하여 변수로 저장한다.
+ 지연 저장 프로퍼티를 잘 사용하면 불필요한 성능저하나 공간 낭비를 줄일 수 있다.
+ */
+//10-4 지연 저장 프로퍼티
+struct CoordinatePoint4 {
+    var x: Int = 0
+    var y: Int = 0
+}
+
+class Position4 {
+    lazy var point: CoordinatePoint4 = CoordinatePoint4()
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+
+let man3Position: Position4 = Position4(name: "man3")
+
+//이 코드를 통해 point 프로퍼티로 처음 접근할 때
+//point 프로퍼티의 CoordinatePoint가 생성된다.
+//호출이 있어야 값을 초기화하는 지연 저장 프로퍼티
+print(man3Position.point) //x: 0, y:0
+
+/*
+ NOTE_ 다중 스레드와 지연 저장 프로퍼티
+ 생성되지 않은 지연 저장 프로퍼티에 많은 스레드가 비슷한 시점에 접근한다면, 여러 번 초기화될 수 있다.
+ */

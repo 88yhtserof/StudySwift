@@ -100,3 +100,65 @@ if let name = myBestName, let friend = bestFriend {
  옵셔널 바인딩으로 매번 값을 추출하기 귀찮거나 로직 상 nil때문에 런타임 오류가 발생하지 않을 것 같다는 확신이 들 때 사용
  but 이것 또한 옵셔널이기 때문에 nil을 할당해 줄 수 있고, 런타임 오류도 발생할 가능성이 있으므로 사용 지양
  */
+
+
+//블로그 정리
+
+//옵셔널이란?
+//var 변수명: 데이터타입? = 값
+
+var introduce: String? = "Hi! I am yh!"
+print(introduce)
+//출력 Optional("Hi! I am yh!")
+
+introduce = nil
+print(introduce)
+//출력 nil
+
+/*
+ public enum Optional<Wrapped> : ExpressibleByNilLiteral {
+    case none
+    case some(Wrapped)
+ 
+    public init(_ some: Wrapped)
+    ...
+ }
+ */
+
+//옵셔널 추출
+
+//옵셔널 강제 추출
+let number1: Int? = 2
+let number2: Int = number1!
+
+print(number1) //옵셔널
+print(number2) //옵셔널의 값을 추출한 값
+//Optional(2)
+//2
+
+//옵셔널 바인딩
+var myTitle: String? = "7월 여름 휴가"
+var myContent: String? = "여름 휴가로 제주도에 놀러가기로 했다."
+
+if let title = myTitle, var content = myContent {
+    //변수이므로 내부에서 변경이 가능하다.
+    content = title + "\n" + content
+    print(content)
+} else {
+    print("nil")
+}
+
+/*
+ 출력
+ 7월 여름 휴가
+ 여름 휴가로 제주도에 놀러가기로 했다.
+ */
+
+//암시적 추출 옵셔널
+let str1: String! = "yh"
+print(str1)
+//Optional("yh")
+
+let str2: String = str1
+print(str2)
+//yh

@@ -138,3 +138,122 @@ print(man3Position.point) //x: 0, y:0
  NOTE_ 다중 스레드와 지연 저장 프로퍼티
  생성되지 않은 지연 저장 프로퍼티에 많은 스레드가 비슷한 시점에 접근한다면, 여러 번 초기화될 수 있다.
  */
+
+
+//10.1.3 연산 프로퍼티
+//10-5 메서드로 구현된 접근자와 설정자
+struct CoordinatePoint5 {
+    var x: Int //저장 프로퍼티
+    var y: Int //저장 프로퍼티
+    
+    //대칭좀울 구하는 메서드 - 접근자
+    //Self는 타입 자기 자신을 뜻한다.
+    //Self 대신 CoordinatePoint를 사용해도 된다
+    func oppositePoint() -> Self {
+        return CoordinatePoint5(x: -x, y: -y)
+    }
+    
+    
+    //대칭점을 설정하는 메서드 - 설정자
+    //mutating 키워드에 관한 내용은 10.2.1절에서 다룬다.
+    mutating func setOppositePoint(_ opposite: CoordinatePoint5) {
+        x = -opposite.x
+        y = -opposite.y
+    }
+}
+
+var man4Position: CoordinatePoint5 = CoordinatePoint5(x: 10, y: 20)
+
+print(man4Position) //현재 좌표 10, 20
+
+print(man4Position.oppositePoint()) //대칭 좌표 -10, -20
+
+//대칭 좌표를 (15, 10)으로 설정하면
+man4Position.setOppositePoint(CoordinatePoint5(x: 15, y: 10))
+
+//현재 좌표는 -15, -10으로 설정된다
+print(man4Position)
+
+
+//10-6 연산 프로퍼티의 정의와 사용
+struct CoordinatePoint6 {
+    var x: Int //저장 프로퍼티
+    var y: Int //저장 프로퍼티
+    
+    //대칭 좌표
+    var oppositePoint: CoordinatePoint6 { //연산 프로퍼티
+        //접근자
+        get {
+            return CoordinatePoint6(x: -x, y: -y)
+        }
+        
+        //설정자
+        set(opposite){
+            x = -opposite.x
+            y = -opposite.y
+        }
+    }
+}
+
+var man5Position:CoordinatePoint6 = CoordinatePoint6(x: 10, y: 20)
+
+//현재 좌표
+print(man5Position) //10, 20
+
+//대칭 좌표
+//연산 프로퍼티 접근자 get
+print(man5Position.oppositePoint) //-10, -20
+
+//대칭 좌표를 (15, 10)으로 설정하면
+//연산 프로퍼티 설정자 set
+man5Position.oppositePoint = CoordinatePoint6(x: 15, y: 10)
+
+//현재 좌표는 -15, -10으로 설정된다.
+print(man5Position) //-15, -10
+
+/*
+ 10-7 매개변수 이름을 생략한 설정자
+ 접근자 내부의 코드가 다 한 줄이고 그 결괏값의 타입이 프로퍼티의 타입과 같다면,
+ return 키워드를 생략해도 그 결괏값이 접근자의 반환값이 된다.
+ newValue로 매개변수 이름을 대신할 수 있다
+ */
+struct CoordinatePoint7 {
+    var x: Int //저장 프로퍼티
+    var y: Int //저장 프로퍼티
+    
+    //대칭 좌표
+    var oppositePoint: CoordinatePoint7 {
+        //접근자
+        get {
+            //return CoordinatePoint7(x: -x, y: -y) 와 같다
+            CoordinatePoint7(x: -x, y: -y)
+        }
+        
+        //설정자
+        set{
+            x = -newValue.x
+            y = -newValue.y
+        }
+    }
+}
+
+var man6Position:CoordinatePoint6 = CoordinatePoint6(x: 10, y: 20)
+
+//현재 좌표
+print(man6Position) //10, 20
+
+//대칭 좌표
+//연산 프로퍼티 접근자 get
+print(man6Position.oppositePoint) //-10, -20
+
+//대칭 좌표를 (15, 10)으로 설정하면
+//연산 프로퍼티 설정자 set
+man6Position.oppositePoint = CoordinatePoint6(x: 15, y: 10)
+
+//현재 좌표는 -15, -10으로 설정된다.
+print(man6Position) //-15, -10
+
+/*
+ 설정자가 필요없다면 읽기 전용으로 연산 프로퍼티를 사용할 수 있다.
+ 연산 프로퍼티에 get 메서드만 구현한다.
+ */

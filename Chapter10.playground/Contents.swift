@@ -257,3 +257,86 @@ print(man6Position) //-15, -10
  설정자가 필요없다면 읽기 전용으로 연산 프로퍼티를 사용할 수 있다.
  연산 프로퍼티에 get 메서드만 구현한다.
  */
+
+
+//10.1.4 프로퍼티 감시자
+/*
+ 프로퍼티 감시자 Property Observers
+ 프로퍼티의 값이 새로 할당될 때마다 호출하기 때문에 프로퍼티의 값이 변경됨에 따라 적절한 작업을 취할 수 있다.
+ 저장 프로퍼티, 상속받은 저장 프로퍼티, 상속받은 연산 프로퍼티
+ willSet 메서드 : 프로퍼티의 값이 변경되기 직전에 호출. 전달 인자는 프로퍼티가 변결될 값. newValue
+ didSet 메서드 : 프로퍼티의 값이 변경된 직후에 호출. 전달 인자는 프로퍼티가 변경되기 전의 값. oldValue
+ */
+//10-9 프로퍼티 감시자
+/*
+class Account {
+    var credit: Int = 0 {
+        willSet {
+            print("잔액이 \(credit)원에서 \(newValue)원으로 변경될 예정입니다.")
+        }
+        
+        didSet {
+            print("잔액이 \(oldValue)원에서 \(credit)원으로 변경되었습니다.")
+        }
+    }
+}
+
+let myAccount: Account = Account()
+
+//잔액이 0원에서 100원으로 변경될 예정입니다.
+myAccount.credit = 1000 //이 문장으로 기준으로 프로퍼티 값이 변경되기 직전에 willSet 호출, 직후에 didSet 호출
+//잔액이 0원에서 1000원으로 변경되었습니다.
+*/
+
+//10-10 상속받은 연산 프로퍼티의 프로퍼티 감시자 구현
+class Account {
+    var credit: Int = 0 { //저장 프로퍼티
+        willSet {
+            print("잔액이 \(credit)원에서 \(newValue)원으로 변경될 예정입니다.")
+        }
+        
+        didSet {
+            print("잔액이 \(oldValue)원에서 \(credit)원으로 변경되었습니다.")
+        }
+    }
+    
+    var dollarValue: Double { //연산 프로퍼티
+        get {
+            return Double(credit) / 1000.0
+        }
+        
+        set {
+            credit = Int(newValue * 1000)
+            print("잔액을 \(newValue)달러로 변경 중입니다.")
+        }
+    }
+    
+}
+
+class ForeignAccount: Account {
+    //연산 프로퍼티 오버라이드(재정의)
+    override var dollarValue: Double {
+        willSet {
+            print("잔액이 \(dollarValue)달러에서 \(newValue)달러로 변경될 예정입니다.")
+        }
+        
+        didSet {
+            print("잔액이 \(oldValue)달러에서 \(dollarValue)달러로 변경되었습니다.")
+        }
+    }
+}
+
+
+let myAccount: ForeignAccount = ForeignAccount()
+
+//잔액이 0원에서 1000원으로 변경되었습니다.
+myAccount.credit = 1000 //ForeignAccount가 Account를 상속받았기 때문에 Account의 프로퍼티 사용 가능
+//잔액 0원에서 1000원으로 변경되었습니다.
+
+//(1)myAccount.dollarValue = 2 문장, ForeignAccount의 dollarValue프로퍼티 값 할당
+//(2)ForeignAccount에 dollarValue의 willSet, 프로퍼티 값 할당 직전 - 잔액이 1.0달러에서 2.0달러로 변경될 예정입니다.
+//(3)Account에 dollarValue의 set메서드의 credit 프로퍼티 사용으로 Account의 credit 프로퍼티의 프로퍼티 감시자 호출
+//willSet - 잔액이 1000원에서 2000원으로 변경될 예정입니다.
+//didSet - 잔액이 1000원에서 2000원으로 변경되었습니다.
+myAccount.dollarValue = 2 //(4)Account에 dollarValue의 set메서드의 print문장 - 잔액을 2.0달러로 변경 중입니다.
+//(5)ForeignAccount에 dollarValue의 didSet, 프로퍼티 값 할당 직후 - 잔액이 1.0달러에서 2.0달러로 변경되었습니다.

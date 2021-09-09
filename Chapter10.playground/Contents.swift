@@ -340,3 +340,43 @@ myAccount.credit = 1000 //ForeignAccount가 Account를 상속받았기 때문에
 //didSet - 잔액이 1000원에서 2000원으로 변경되었습니다.
 myAccount.dollarValue = 2 //(4)Account에 dollarValue의 set메서드의 print문장 - 잔액을 2.0달러로 변경 중입니다.
 //(5)ForeignAccount에 dollarValue의 didSet, 프로퍼티 값 할당 직후 - 잔액이 1.0달러에서 2.0달러로 변경되었습니다.
+
+
+/*
+ 10.1.5 전역변수와 지역변수
+ 함수나 메서드, 클로저, 클래스, 구조체, 열거형 등의 범위 안에 포함되지 않았던 변수나 상수
+ 전역변수 또는 지역변수는 저장변수라고 한다.
+ 전역변수나 지역변수를 연산변수로 구현할 수도 있으며, 프로퍼티 감시자를 구현할 수도 있다.
+ 전역변수 또는 전역상수는 지연 저장 프로퍼티처럼 처음 접근할 때 최초로 연산이 이루어진다.
+ 지역변수 및 지역상수는 절대로 지연 연산되지 않는다.
+ */
+//10-11 저장변수의 감시자와 연산변수
+var wonInPocket: Int = 200 { //프로퍼티 감시자 구현
+    willSet{
+        print("주머니의 돈이 \(wonInPocket)원에서 \(newValue)원으로 변경될 예정입니다.")
+    }
+    
+    didSet {
+        print("주머니의 돈이 \(oldValue)원에서 \(wonInPocket)원으로 변경되었습니다.")
+    }
+}
+
+var dollarInPocket: Double { //연산 변수
+    get {
+        return Double(wonInPocket) / 1000.0
+    }
+    set {
+        wonInPocket = Int(newValue * 1000.0)
+        print("주머니에서 달러를 \(newValue)달러로 변경 중입니다.")
+    }
+}
+
+
+dollarInPocket = 3.5
+
+//(1) dollarInPocket에 값 할당
+//(2) dollarInPocket의 set 메서드 호출
+//(3) set 메서드 속 첫 번째 실행문장 -> wonInPocket에 값 할당
+//(4) wonInPocket의 프로퍼티 값 변경 직전 willSet 호출 : 주머니의 돈이 200원에서 3500원으로 변경될 예정입니다.
+//(5) wonInPocket의 프로퍼티 값 변경 직후 didSet 호출 : 주머니의 돈이 200원에서 3500원으로 변경되었습니다.
+//(6) dollarInPocket의 set 메서드 속 두 번째 실행문장 -> print(): 주머니에서 달러를 3.5달러로 변경 중입니다.

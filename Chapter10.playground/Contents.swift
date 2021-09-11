@@ -435,3 +435,34 @@ classInstance.instansProperty = 100 //인스턴스 프로퍼티는 각 인스턴
 
 print(AClass.typeProperty) //200
 print(AClass.typeComputedProperty) //20
+
+/*
+ 타입 프로퍼티는 인스턴스를 생성하지 않고도 사용할 수 있으며 타입에 해당하는 값입니다.
+ 그래서 인스턴스에 접근할 필요 없이 타입 이름만으로도 프로퍼티를 사용할 수 있습니다.
+ */
+
+//10-13 타입 프로퍼티의 사용
+class Account1 {
+    
+    static let dollarExchangeRate: Double = 1000.0 //타입 상수
+    
+    var credit: Int = 0 //저장 인스턴스 프로퍼티
+    
+    var dollarValue: Double { //연산 인스턴스 프로퍼티
+        get {
+            //Self.dollarExchangeRate는
+            //Account1.dollarExchangeRate와 같은 표현
+            return Double(credit) / Self.dollarExchangeRate
+        }
+        set {
+            //Self.dollarExchangeRate는
+            //Account1.dollarExchangeRated와 같은 표현
+            credit = Int(newValue * Account1.dollarExchangeRate)
+            print("잔액을 \(newValue)달러로 변경 중입니다.")
+        }
+    }
+}
+
+let instanceAccount1: Account1 = Account1()
+instanceAccount1.dollarValue = 10
+print(instanceAccount1.dollarValue)

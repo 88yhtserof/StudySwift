@@ -380,3 +380,58 @@ dollarInPocket = 3.5
 //(4) wonInPocket의 프로퍼티 값 변경 직전 willSet 호출 : 주머니의 돈이 200원에서 3500원으로 변경될 예정입니다.
 //(5) wonInPocket의 프로퍼티 값 변경 직후 didSet 호출 : 주머니의 돈이 200원에서 3500원으로 변경되었습니다.
 //(6) dollarInPocket의 set 메서드 속 두 번째 실행문장 -> print(): 주머니에서 달러를 3.5달러로 변경 중입니다.
+
+
+/*
+ 10.1.6 타입 프로퍼티
+ 각각의 인스턴스가 아닌 타입 자체에 속하는 프로퍼티
+ 타입 프로퍼티는 타입 자체에 영향을 미치는 프로퍼티이다.
+ 인스턴스의 생성 여부와 상관없이 타입 프로퍼티의 값은 하나며,
+ 그 타입의 모든 인스턴스가 공통으로 사용하는 값, 모든 인스턴스에서 공용으로 접근하고 값을 변경할 있는 변수 등을 정의할 때 유용하다.
+ 저장 타입 프로퍼티:
+ 변수 또는 상수로 선언할 수 있다. 반드시 초깃값을 설정해야 하며 지연 연산됩니다.
+ 지연 저장 프로퍼티와는 조금 다르게 다중 스레드 환경이라고 하더라도 단 한 번만 초기화된다는 보장을 받는다.
+ 연산 타입 프로퍼티:
+ 변수로만 선언할 수 있다.
+ */
+
+//10-12 타입 프로퍼티와 인스턴스 프로퍼티
+/*
+ 인스턴스 프로퍼티
+ 이제까지 알아본 프로퍼티 개념은 모두 타입을 정의하고 해당 타입의 인스턴스가 생성되었을 때 사용할 수 있는 인스턴스 프로퍼티이다.
+ 인스턴스 프로퍼티는 인스턴스를 새로 생성할 때마다 초깃값에 해당하는 값이 프로퍼티의 값이 되고, 인스턴스마다 다른 값을 지날 수 있다.
+ */
+class AClass {
+    
+    //저장 타입 프로퍼티
+    static var typeProperty: Int = 0
+    
+    //저장 인스턴스 프로퍼티
+    var instansProperty: Int = 0 {
+        didSet { //프로퍼티 감시자, didSet: 프로퍼티 값 변경 직후 호출
+            //Self.typeProperty는
+            //AClass.typeProperty와 같은 표현이다.
+            Self.typeProperty = instansProperty + 100
+        }
+    }
+    
+    //연산 타입 프로퍼티
+    static var typeComputedProperty: Int {
+        get {//접근자
+            return typeProperty
+        }
+        set { //설정자
+            typeProperty = newValue
+        }
+    }
+}
+
+AClass.typeProperty = 123 //타입 프로퍼티는 인스턴스 생성 여부와 상관없이 타입 자체에 영향을 준다
+//즉, 타입클래스에 값을 할당하면 모든 인스턴스의 해당 타입 프로퍼티의 값이 공통된 것이기 때문에 할당된 값과 동일하다.
+//타입 프로퍼티는 각 인스턴스마다 구분되지 않고 하나이다
+
+let classInstance: AClass = AClass() //인스턴스 생성
+classInstance.instansProperty = 100 //인스턴스 프로퍼티는 각 인스턴스마다 다른 인스턴스로 구분된다.
+
+print(AClass.typeProperty) //200
+print(AClass.typeComputedProperty) //20

@@ -466,3 +466,13 @@ class Account1 {
 let instanceAccount1: Account1 = Account1()
 instanceAccount1.dollarValue = 10
 print(instanceAccount1.dollarValue)
+
+/*10.1.7 키 경로
+ 프로퍼티도 프로퍼티의 위치만 참조하도록 할 수 있다. 바로 키 경로 key Path를 활용하는 방법이다.
+ 키 경로를 사용하여 간접적으로 특정 타입의 어떤 프로퍼티 값을 가리켜야 할지 미리 정해두고 사용할 수 있다.
+ 키 경로 타입은 AnyKeyPath라는 클래스로부터 파생된다.
+ 키 경로 타입인 WritableKeyPath<Root, Value>타입은 값 타입에 키 경로 타입으로 읽고 쓸 수 있는 경우 적용한다,
+ 키 경로 타입인 ReferenceWritableKeyPath<Root, Value> 타입은 참조 타입, 즉 클래스 타입에 키 경로 타입으로 읽고 쓸 수 있는 경우에 적용된다.
+ 키 경로는 역슬래시\와 타입, 마침표. 경로로 구성된다.
+ \타입이름.경로.경로.경로
+*/

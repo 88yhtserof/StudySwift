@@ -476,3 +476,34 @@ print(instanceAccount1.dollarValue)
  키 경로는 역슬래시\와 타입, 마침표. 경로로 구성된다.
  \타입이름.경로.경로.경로
 */
+//10-14 키 경로 타입의 타입 확인
+class Person {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+struct Stuff {
+    var name: String
+    var owner: Person
+}
+
+print(type(of: \Person.name)) //ReferenceWritableKeyPath<Person, String> 참조 타입(클래스 타입)에 키 경로 타입으로 읽고 쓸 수 있는 경우
+print(type(of: \Stuff.name)) //WritableKeyPath<Stuff, String> 값 타입에 키 경로 타입으로 읽고 쓸 수 있는 경우
+
+
+/*
+ 10-15 키 경로 타입의 경로 연결
+ 키 경로는 기존의 키 경로에 하위 경로를 덧붙여 줄 수도 있다.
+ appending(path:) 사용
+ */
+let keyPath = \Stuff.owner
+print(type(of: keyPath)) //WritableKeyPath<Stuff, Person>
+let nameKeyPath = keyPath.appending(path: \.name)
+
+print(type(of: nameKeyPath)) //ReferenceWritableKeyPath<Stuff, String>
+//-><root, value> 키 경로 타입은 value의 타입이 결정
+//why, 키 경로를 할당 받은 상수나 변수가 value에 들어가는 프로퍼티 값을 가리킬테니깐!
+

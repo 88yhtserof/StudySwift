@@ -507,3 +507,44 @@ print(type(of: nameKeyPath)) //ReferenceWritableKeyPath<Stuff, String>
 //-><root, value> 키 경로 타입은 value의 타입이 결정
 //why, 키 경로를 할당 받은 상수나 변수가 value에 들어가는 프로퍼티 값을 가리킬테니깐!
 
+/*
+ 10-16 keyPath 서브 스크립트와 키 경로 활용
+ 각 인스터스의 keyPath 서브스크립트 메서드에 키 경로를 전달하여 프로퍼티에 접근할 수 있다.
+ */
+class Person2 {
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+struct Stuff2 {
+    var name: String
+    var owner: Person2
+}
+
+let yh = Person2(name: "yh")
+let haha = Person2(name: "haha")
+let macbook = Stuff2(name: "macbook Pro", owner: yh)
+var iMac = Stuff2(name: "iMac", owner: yh)
+let iPhone = Stuff2(name: "iPhone", owner: haha)
+
+let stuffNameKeyPath = \Stuff2.name
+let ownerKeyPath = \Stuff2.owner
+print(type(of: ownerKeyPath)) //WritableKeyPath<Stuff2 , Person2>
+
+//\Stuff.owner.name과 같은 표현이 된다.
+let ownerNameKeyPath = ownerKeyPath.appending(path: \.name)
+print("ownerNameKeyPath의 타입은? \(type(of: ownerNameKeyPath))")//KeyPath<Stuff2, String> -> <root, value>
+
+//키 경로와 서브 스크립트를 이용해 프로퍼티에 접근하여 값을 가져온다.
+print(macbook[keyPath: stuffNameKeyPath]) //macbook Pro -> KeyPath<Stuff2, String>에서 String에 해당하는 값을 출력한다.
+print(iPhone[keyPath: ownerNameKeyPath]) //haha -> KeyPath<Stuff2, String>에서 String에 해당하는 값을 출력한다.
+
+//키 경로와 서브 스크립트를 이용해 프로퍼티에 접근하여 값을 변경합니다.
+iMac[keyPath: stuffNameKeyPath] = "iMac Pro"
+
+print(iMac[keyPath: stuffNameKeyPath]) //iMac Pro -> ReferenceWritableKeyPath<Stuff, String>
+
+//상수로 지정한 값 타입과 읽기 전용 프로퍼티는 키 경로 서브 스크립트로도 값을 바꿔줄 수 없다.

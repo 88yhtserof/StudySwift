@@ -17,12 +17,14 @@
 		9ADF7E3E26D687E400907EFB /* Chapter10.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter10.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9AE0788326D28E7C00B1A05A /* Chapter9.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter9.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9AFDD5F326934E0E009F2D26 /* Chapter2.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter2.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		9AFE3539270DEFD800CA1203 /* Chapter10.2.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Chapter10.2.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		9A03A8EF2691D8F200C8FFCA = {
 			isa = PBXGroup;
 			children = (
+				9AFE3539270DEFD800CA1203 /* Chapter10.2.playground */,
 				9ADF7E3E26D687E400907EFB /* Chapter10.playground */,
 				9AE0788326D28E7C00B1A05A /* Chapter9.playground */,
 				9ACC48C426CD488F00041AAB /* Chapter8.playground */,
